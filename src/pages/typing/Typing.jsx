@@ -11,17 +11,18 @@ export function Typing() {
     const resetActiveKey = async ()=>{
         setTimeout(()=>{
             setTypedText(prev =>({...prev, active: ""}));
-        },100)
+        },10)
     }
     
     useEffect(()=>{
         window.addEventListener("keydown",(event)=>{
-            console.log(event.key);
             setTypedText(({text, active})=> {
-                if(azerty.some(el=> el.indexOf(event.key.toLocaleLowerCase()) !== -1))
-                    return { active: event.key, text: text + event.key.toLocaleLowerCase() }
-                if(event.key == "Backspace" && text.length > 0){
-                    return { active: event.key, text:text.slice(0, text.length - 1) }
+                if(active === ""){
+                    if(event.key === " " || azerty.some(el=> el.indexOf(event.key.toLocaleLowerCase()) !== -1))
+                        return { active: event.key, text: text + event.key.toLocaleLowerCase() }
+                    if(event.key === "Backspace" && text.length > 0){
+                        return { active: event.key, text:text.slice(0, text.length - 1) }
+                    }
                 }
                 return  { text, active }
             })
@@ -32,12 +33,12 @@ export function Typing() {
     },[])
 
     //TODO: generate text or get from any api
-    const text = "Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates laborum sint delectus at neque. Nisi "
-
+    const text = "lorem ipsum dolor sit amet consectetur adipisicing elit voluptates laborum sint delectus at neque nisi "
+    console.log(typedText.text);
     return (
         <ActiveKeyContext.Provider value={typedText}>
             <div className="d-c-c w-screen h-screen">
-                <TextShow text={text} />
+                <TextShow printText={text} />
                 <Keyboard layout={azerty} />
             </div>
         </ActiveKeyContext.Provider>
