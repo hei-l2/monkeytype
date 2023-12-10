@@ -34,7 +34,7 @@ export function Typing() {
 
     //TODO: generate text or get from any api
     const text = "lorem ipsum dolor sit amet consectetur adipisicing elit voluptates laborum sint delectus at neque nisi "
-    console.log(typedText.text);
+    
     return (
         <ActiveKeyContext.Provider value={typedText}>
             <div className="d-c-c w-screen h-screen">
