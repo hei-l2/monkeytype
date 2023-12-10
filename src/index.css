@@ -7,7 +7,7 @@ body{
 }
 
 .text-lg-white{
-    @apply text-blue-100 opacity-[.8]
+    @apply text-blue-100 opacity-[.9]
 }
 
 .d-c-c{
@@ -16,5 +16,17 @@ body{
 
 .button-base{
     @apply border-blue-100 py-1 px-5 text-[20px] 
-    text-blue-50 opacity-[.8] transition-[.5s] rounded-[5px]
+    text-blue-50 opacity-[.9] transition-[.5s] rounded-[5px]
+}
+
+.key{
+    @apply border-[1px] opacity-[.9] d-c-c text-blue-50 text-[18px] w-[45px] h-[45px] rounded-[5px]
+}
+
+.key.active{
+    @apply bg-slate-400 text-black
+}
+
+.key.space{
+    @apply w-[200px]
 }
