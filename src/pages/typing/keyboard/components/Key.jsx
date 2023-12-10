@@ -1,7 +1,14 @@
-export function Key() {
+import PropTypes from 'prop-types';
+
+export function Key({ letter = ''}) {
+    const className = letter === " " ? "key space" : "key";
     return (
-        <div className="key">
-            K
+        <div className={className}>
+            { letter.toLocaleLowerCase() }
         </div>
     )
+}
+
+Key.propTypes = {
+    letter: PropTypes.string.isRequired
 }
