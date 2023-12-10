@@ -7,7 +7,7 @@ body{
 }
 
 .text-lg-white{
-    @apply text-blue-100
+    @apply text-blue-100 opacity-[.8]
 }
 
 .d-c-c{
