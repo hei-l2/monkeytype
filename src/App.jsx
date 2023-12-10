@@ -1,9 +1,12 @@
+import { BrowserRouter } from "react-router-dom"
+import Router from "./Router"
+
 function App() {
-  return (
-    <div className="text-blue-500 text-center">
-      hello ninja
-    </div>
-  )
+	return (
+		<BrowserRouter>
+			<Router />
+		</BrowserRouter>
+	)
 }
 
 export default App
