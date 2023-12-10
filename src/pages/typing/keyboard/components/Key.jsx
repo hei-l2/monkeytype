@@ -2,10 +2,10 @@ import PropTypes from 'prop-types';
 import { useActiveKey } from '../../useActiveKey';
 
 export function Key({ letter = ''}) {
-    const { key } = useActiveKey()
+    const { active } = useActiveKey()
     let className = letter !== " " ? "key" : "key space";
     
-    if(letter.toLocaleLowerCase() === key.toLocaleLowerCase()){
+    if(letter.toLocaleLowerCase() === active.toLocaleLowerCase()){
         className += " active"
     }
     
