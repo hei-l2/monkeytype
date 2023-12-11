@@ -1,3 +1,3 @@
 # Ninja MonkeyType
 
-### Deploy url : [https://ragidro-type.netlify.app](https://ragidro-type.netlify.app)
+### Deploy url : [https://ragidro-type.vercel.app](https://ragidro-type.vercel.app)
