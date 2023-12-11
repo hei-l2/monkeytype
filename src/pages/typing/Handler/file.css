@@ -1,0 +1,6 @@
+.correct{
+    color: rgb(37 231 95);
+}
+.incorrect{
+    color: rgb(239 68 68 / var(--tw-bg-opacity));
+}

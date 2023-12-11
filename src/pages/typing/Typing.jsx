@@ -2,6 +2,7 @@ import { createContext, useEffect, useState } from "react";
 import { azerty } from "../../utils/layouts";
 import { Keyboard } from "./keyboard";
 import { TextShow } from "./text-show";
+import { KeyHandler } from "./Handler/KeyHandler";
 
 export const ActiveKeyContext = createContext();
 
@@ -19,7 +20,7 @@ export function Typing() {
             setTypedText(({text, active})=> {
                 if(active === ""){
                     if(event.key === " " || azerty.some(el=> el.indexOf(event.key.toLocaleLowerCase()) !== -1))
-                        return { active: event.key, text: text + event.key.toLocaleLowerCase() }
+                        return { active: event.key, text: text + event.key }
                     if(event.key === "Backspace" && text.length > 0){
                         return { active: event.key, text:text.slice(0, text.length - 1) }
                     }
@@ -33,12 +34,12 @@ export function Typing() {
     },[])
 
     //TODO: generate text or get from any api
-    const text = "lorem ipsum dolor sit amet consectetur adipisicing elit voluptates laborum sint delectus at neque nisi "
+    const text = "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Cupiditate suscipit minima aspernatur magni iusto nisi atque sit. Tempora, vel quasi magnam tenetur est cupiditate voluptas eveniet, autem voluptatum itaque odio."
     
     return (
         <ActiveKeyContext.Provider value={typedText}>
             <div className="d-c-c w-screen h-screen">
-                <TextShow printText={text} />
+                <KeyHandler sentence={text}/>
                 <Keyboard layout={azerty} />
             </div>
         </ActiveKeyContext.Provider>
