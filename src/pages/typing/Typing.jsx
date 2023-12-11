@@ -33,7 +33,7 @@ export function Typing() {
     },[])
 
     //TODO: generate text or get from any api
-    const text = "lorem ipsum dolor sit amet consectetur adipisicing elit voluptates laborum sint delectus at neque nisi "
+    const text = "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Cupiditate suscipit minima aspernatur magni iusto nisi atque sit. Tempora, vel quasi magnam tenetur est cupiditate voluptas eveniet, autem voluptatum itaque odio."
     
     return (
         <ActiveKeyContext.Provider value={typedText}>
