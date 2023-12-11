@@ -3,28 +3,44 @@ import './file.css'
 
 const KeyHandler = ({ sentence }) => {
     const [inputValue, setInputValue] = useState('');
-    var [mistakes, setMistakes] = useState(0);
-    const [started, setStarted] = useState(false);
-    const [key, setKey] = useState()
+    const [mistakes, setMistakes] = useState(0);
+
+    useEffect(() => {
+        const handleKeyDown = (e) => {
+            if (e.key.length === 1) {
+                handleInputChanges(e.key);
+            } else if (e.key === 'Backspace') {
+                handleBackspace();
+            }
+        };
+
+        window.addEventListener('keydown', handleKeyDown);
+        return () => {
+            window.removeEventListener('keydown', handleKeyDown);
+        };
+    }, [inputValue]);
 
     const handleInputChanges = (typedChar) => {
-        if (!started) {
-            return; 
+        const expectedChar = sentence[inputValue.length];
+
+        let newMistakes = 0;
+        const newInputValue = inputValue + typedChar;
+
+        for (let i = 0; i < newInputValue.length; i++) {
+            if (newInputValue[i] !== sentence[i]) {
+                newMistakes += 1;
+            }
         }
 
-        const expectedChar = sentence[inputValue.length];
-        setKey(expectedChar)
+        setInputValue(newInputValue);
+        setMistakes(newMistakes);
+    };
 
-        let newMistakes = 0
-            setInputValue(inputValue + typedChar);
-            
-            for (let i = 0; i < inputValue.length; i++) {
-                if (inputValue[i] !== sentence[i]) {
-                    newMistakes += 1;
-                }
-            }
-
-        setMistakes(newMistakes)
+    const handleBackspace = () => {
+        if (inputValue.length > 0) {
+            setInputValue(inputValue.slice(0, -1));
+            setMistakes(0);
+        }
     };
 
     const getCharClass = (expectedChar, typedChar, index) => {
@@ -34,21 +50,8 @@ const KeyHandler = ({ sentence }) => {
         return '';
     };
 
-    const startGame = () => {
-        setStarted(true);
-        setMistakes(0);
-    };
-
-    const handleKeyDown = (e) => {
-        if (started && e.key.length === 1) {
-            handleInputChanges(e.key);
-            setKey(e.key)
-        }
-    };
- 
-
     return (
-        <div onKeyDown={handleKeyDown} tabIndex="0">
+        <div>
             <p>
                 {sentence.split('').map((char, index) => (
                     <span key={index} className={getCharClass(char, inputValue[index], index)}>
@@ -56,8 +59,7 @@ const KeyHandler = ({ sentence }) => {
                     </span>
                 ))}
             </p>
-            
-            <button onClick={startGame}>Start</button>
+            <p>Mistakes : {mistakes}</p>
         </div>
     );
 };
