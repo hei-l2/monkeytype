@@ -5,6 +5,14 @@ import './file.css'
 export const KeyHandler = ({sentence})=>{
     const [inputValue, setInputValue] = useState('');
     const [mistakes, setMistakes] = useState(0);
+    const [count, setCount] = useState(30)
+
+
+    setTimeout(() => {
+        for (let i = 0; i < count; i++) {
+            setCount(i)
+        }
+    }, 900);
 
     useEffect(() => {
         const handleKeyDown = (e) => {
@@ -54,6 +62,7 @@ export const KeyHandler = ({sentence})=>{
     return (
         <div  className="flex-1 w-full"> 
             <div className="flex text-lg-white px-10 text-[35px] w-full d-c-c h-full flex-row">
+         {count}
                 <p className="text-center">
                 {sentence.split('').map((char, index) => (
                     <span key={index} className={getCharClass(char, inputValue[index], index)}>
