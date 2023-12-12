@@ -14,6 +14,7 @@ export const KeyHandler = ({sentence})=>{
         }
     }, 900);
 
+
     useEffect(() => {
         const handleKeyDown = (e) => {
             if (e.key.length === 1) {
@@ -63,6 +64,7 @@ export const KeyHandler = ({sentence})=>{
         <div  className="flex-1 w-full"> 
             <div className="flex text-lg-white px-10 text-[35px] w-full d-c-c h-full flex-row">
          {count}
+
                 <p className="text-center">
                 {sentence.split('').map((char, index) => (
                     <span key={index} className={getCharClass(char, inputValue[index], index)}>
